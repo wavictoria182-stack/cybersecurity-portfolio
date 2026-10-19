@@ -1,0 +1,16 @@
+// Run each query separately in Kibana with the lab dates selected.
+
+// All failed logins
+event.outcome : "failure"
+
+// Failures affecting alex
+event.outcome : "failure" and user.name : "alex"
+
+// Suspected automated password-guessing pattern: 80 events
+event.outcome : "failure" and user.name : "alex" and source.ip : "203.0.113.50"
+
+// Look for successes from the same source: 0 events in this dataset
+event.outcome : "success" and source.ip : "203.0.113.50"
+
+// Review the account's successful logins for additional context
+event.outcome : "success" and user.name : "alex"
